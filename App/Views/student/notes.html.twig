@@ -1,0 +1,54 @@
+{% extends "student/app.html.twig" %}
+
+{% block title %}Notes{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+
+                {% include 'student/includes/sys_message.html.twig' %}
+
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <p class="lead">
+                        <span class="font-weight-bold">Notes</span>
+                    </p>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- .section-block -->
+                    <div class="section-block">
+                        <div class="row">
+                        {% if notes is not empty %}
+                        {% set i = 0 %}
+                        {% for note in notes %}
+                        {% set i = i + 1 %}
+                        <div class="col-12 col-lg-8 col-xl-6">
+                            <section class="card">
+                                <header class="card-header">
+                                    {{ note.title }}
+                                </header>
+                                <div class="card-body">
+                                    {{ note.content | raw }}
+                                </div>
+                            </section>
+                        </div>
+
+                        {% endfor %}
+                        {% else %}
+                        No any notes
+                        {% endif %}
+                        </div>
+
+
+                    </div><!-- /.section-block -->
+
+
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+
+{% endblock %}

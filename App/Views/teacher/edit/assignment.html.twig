@@ -1,0 +1,58 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+    <!-- .page -->
+    <div class="page">
+        <!-- .page-inner -->
+        <div class="page-inner">
+            <!-- .page-title-bar -->
+            <header class="page-title-bar">
+                <p class="lead">
+                    <span class="font-weight-bold">Edit Assignment</span>
+                </p>
+            </header><!-- /.page-title-bar -->
+            <!-- .page-section -->
+            <div class="page-section">
+                <!-- .section-block -->
+                <div class="section-block">
+
+                    <div class="card card-fluid">
+                        <h6 class="card-header"> Form : Edit Assignment </h6>
+                        <div class="card-body">
+                            <form method="post">
+                                <input type="hidden" value="{{ assignment.assignment_id }}" name="ueAssignment">
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input01" class="col-md-3 mb-3">Title</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <input type="text" name="title" class="form-control" id="input01" value="{{ assignment.assignment_title }}" required="">
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input02" class="col-md-3 mb-3">Assignment</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <textarea name="assignment" required class="form-control" id="input02" cols="30" rows="5">{{ assignment.assignment }}</textarea>
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-3"></div>
+                                    <button type="submit" name="assignmentUpdate" class="btn btn-primary">Update Assignment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div><!-- /.section-block -->
+
+
+            </div><!-- /.page-section -->
+        </div><!-- /.page-inner -->
+    </div><!-- /.page -->
+
+{% endblock %}

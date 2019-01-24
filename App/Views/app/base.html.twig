@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> {% block title %}{% endblock %} :: Education Portal</title>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet"><!-- End Google font -->
+    <!-- BEGIN PLUGINS STYLES -->
+    <link rel="stylesheet" href="/assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/fontawesome-5.6.1/css/all.css">
+    <!-- END PLUGINS STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="/assets/stylesheets/theme.min.css" data-skin="default">
+    <link rel="stylesheet" href="/assets/stylesheets/theme-dark.min.css" data-skin="dark">
+    <!-- Disable unused skin immediately -->
+    <script> var skin = localStorage.getItem('skin') || 'default';
+        var unusedLink = document.querySelector('link[data-skin]:not([data-skin="'+ skin +'"])');
+
+        unusedLink.setAttribute('rel', '');
+        unusedLink.setAttribute('disabled', true);
+    </script><!-- END THEME STYLES -->
+    <!--<link rel="stylesheet" href="/assets/jquery/jquery.toast.css">-->
+    {% block headCSS %}{% endblock %}
+    {% block addCSS %}{% endblock %}
+</head>
+<body>
+{% block body %}
+
+{% endblock %}
+
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/popper.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="/assets/jquery/jquery-3.3.1.min.js"></script>-->
+<!--<script src="/assets/popper-1.14.4/umd/popper.min.js"></script>-->
+<!--<script src="/assets/bootstrap-4.1.3/js/bootstrap.min.js"></script>-->
+
+<!--<script src="/assets/jquery/jquery.toast.js"></script>-->
+
+<!-- BEGIN PLUGINS JS -->
+<script src="/assets/vendor/pace/pace.min.js"></script>
+<script src="/assets/vendor/stacked-menu/stacked-menu.min.js"></script>
+<script src="/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+{#<script src="/assets/vendor/flatpickr/flatpickr.min.js"></script>#}
+<!-- END PLUGINS JS -->
+
+
+<!-- BEGIN THEME JS -->
+<script src="/assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+
+<script src="/assets/javascript/pages/dashboard.js"> </script>
+
+<script src="/assets/javascript/education-portal.js"></script>
+
+{% block headJS %}{% endblock %}
+{% block addJS %}{% endblock %}
+
+
+</body>
+
+</html>

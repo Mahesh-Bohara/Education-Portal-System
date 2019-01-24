@@ -1,0 +1,55 @@
+
+<!-- .app-aside -->
+<aside class="app-aside app-aside-expand-md app-aside-light">
+    <!-- .aside-content -->
+    <div class="aside-content">
+        <!-- .aside-header -->
+        <header class="aside-header d-block d-md-none">
+            <!-- .btn-account -->
+            <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside"><span class="user-avatar user-avatar-lg"><img src="/assets/education-portal/default-avatar.svg" alt=""></span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span> <span class="account-summary"><span class="account-name">{{ user.info.first_name }} {{ user.info.last_name }}</span> <span class="account-description">Student</span></span></button> <!-- /.btn-account -->
+            <!-- .dropdown-aside -->
+            <div id="dropdown-aside" class="dropdown-aside collapse">
+                <!-- dropdown-items -->
+                <div class="pb-3">
+                    <a class="dropdown-item" href="/t/{{ user.username }}"><span class="dropdown-icon oi oi-person"></span> Profile</a> <a class="dropdown-item" href="/logout"><span class="dropdown-icon oi oi-account-logout"></span> Logout</a>
+                    <div class="dropdown-divider"></div> <a class="dropdown-item" href="#!">Chat</a>
+                </div><!-- /dropdown-items -->
+            </div><!-- /.dropdown-aside -->
+        </header><!-- /.aside-header -->
+        <!-- .aside-menu -->
+        <section class="aside-menu overflow-hidden">
+            <!-- .stacked-menu -->
+            <nav id="stacked-menu" class="stacked-menu">
+                <!-- .menu -->
+                <ul class="menu">
+                    <!-- .menu-item -->
+                    <li class="menu-item {% if title == 'Home' %}has-active {% endif %}">
+                        <a href="/" class="menu-link"><span class="menu-icon fa fa-home"></span> <span class="menu-text">Dashboard</span></a>
+                    </li><!-- /.menu-item -->
+                    <li class="menu-item {% if title == 'Notes' %}has-active {% endif %}">
+                        <a href="/s/notes" class="menu-link"><span class="menu-icon oi oi-lightbulb"></span> <span class="menu-text">Notes</span></a>
+                    </li>
+
+                    <li class="menu-item {% if title == 'QNA' %}has-active {% endif %}">
+                        <a href="/s/qna" class="menu-link"><span class="menu-icon fa fa-question"></span> <span class="menu-text">Question and Answers</span></a>
+                    </li>
+
+                    <li class="menu-item {% if title == 'Assignments' or title == 'Add Assignment' %}has-active {% endif %}">
+                        <a href="/s/assignments" class="menu-link"><span class="menu-icon fa fa-file-alt"></span> <span class="menu-text">Assignments</span></a>
+                    </li>
+
+                    <!-- .menu-header -->
+                    <li class="menu-header">Extra </li><!-- /.menu-header -->
+                    <!-- .menu-item -->
+                    <li class="menu-item {% if title == 'Chat' %}has-active {% endif %}">
+                        <a href="/chat" class="menu-link"><span class="menu-icon oi oi-chat"></span> <span class="menu-text">Chat</span></a>
+                    </li><!-- /.menu-item -->
+                </ul><!-- /.menu -->
+            </nav><!-- /.stacked-menu -->
+        </section><!-- /.aside-menu -->
+        <!-- Skin changer -->
+        <div class="aside-footer border-top p-3">
+            <button class="btn btn-light btn-block" data-toggle="skin">Night mode <i class="fas fa-moon ml-1"></i></button>
+        </div><!-- /Skin changer -->
+    </div><!-- /.aside-content -->
+</aside><!-- /.app-aside -->

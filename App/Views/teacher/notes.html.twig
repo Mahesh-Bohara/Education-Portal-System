@@ -1,0 +1,116 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}Notes{% endblock %}
+{% block headCSS %}
+
+    <style>
+        #noteFD {
+            position: relative;
+            max-height: 200px;
+            overflow: hidden;
+            /*width: 100%;*/
+            /*white-space: nowrap;*/
+            display: block;
+            text-overflow: ellipsis;
+        }
+        #noteFD:before {
+            content: '...';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        #noteFD:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 1em;
+            height: 1em;
+            margin-top: 0.2em;
+            background: white;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+
+                {% include 'teacher/includes/sys_message.html.twig' %}
+
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <p class="lead">
+                        <span class="font-weight-bold">Notes</span>
+                    </p>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- .section-block -->
+                    <div class="section-block">
+
+                            <header class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <span class="mr-auto">Action : </span>
+                                    <a href="/t/note/add" class="btn btn-icon btn-light"><i class="fa fa-plus" title="add assignments"></i></a>
+                                    <!--<button type="button" class="btn btn-icon btn-light"><i class="fa fa-download"></i></button> -->
+                                </div>
+                            </header>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover">
+                                <!-- thead -->
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th> # </th>
+                                    <th style="min-width:200px"> Note Title </th>
+                                    <th> Content </th>
+                                    <th style="min-width:200px"> Action </th>
+                                </tr>
+                                </thead><!-- /thead -->
+                                <!-- tbody -->
+                                <tbody>
+                                {% if notes is not empty %}
+                                {% set i = 0 %}
+                                {% for note in notes %}
+                                    {% set i = i + 1 %}
+                                <!-- tr -->
+                                <tr>
+                                    <td> {{ i }} </td>
+                                    <td> <a href="/t/note/{{ note.link }}"> {{ note.title }} </a></td>
+                                    <td style="width: 100%">
+                                        <div id="">
+                                                {{ note.content | raw }}
+                                            <a class="btn-light" href="/t/note/{{ note.link }}" style="bottom: 40px;right: 20px"><i class="fa fa-book"></i> Read more...</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/t/note/{{ note.material_id }}/edit" class="btn btn-outline-primary"><i class="fa fa-edit"></i><span class="d-sm-none d-lg-inline-block">Edit</span></a>
+                                        <a href="/t/note/{{ note.material_id }}/delete" class="btn btn-outline-primary"><i class="fa fa-trash"></i><span class="d-sm-none d-lg-inline-block">Delete</span></a>
+                                    </td>
+                                </tr><!-- /tr -->
+                                {% endfor %}
+                                {% else %}
+                                        <tr>
+                                            <td colspan=3><div class="alert alert-light">No any notes found</div></td>
+                                            <td>
+                                                <a href="/t/note/add" class="btn btn-outline-primary"><i class="fa fa-plus"></i><span class="d-sm-none d-lg-inline-block">&nbsp;Add</span></a>
+                                            </td>
+                                        </tr>
+                                {% endif %}
+                                </tbody><!-- /tbody -->
+                            </table>
+
+                        </div>
+
+
+                    </div><!-- /.section-block -->
+
+
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+
+{% endblock %}

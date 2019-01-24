@@ -1,0 +1,161 @@
+{% extends 'student/view/view.layout.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+
+    {% block addCSS %}
+        <style>
+            .ck-editor__main p {
+                min-height: 130px;
+            }
+        </style>
+    {% endblock %}
+
+{% block topHamburger %}
+    <!-- toggle menu -->
+    <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+    </button>
+    <!-- /toggle menu -->
+{% endblock %}
+{% block notice %} {% endblock %}
+
+{#{% block materialStyle %}#}
+    {#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.7/css/mdb.min.css" />#}
+    {#<link href="{{ asset('assets/libs/froala-editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css"/>#}
+{#{% endblock %}#}
+
+{% block snote_page_content %}
+
+    <div class="page-section">
+        <div class="container">
+            <section class="card card-fluid">
+                <div class="card-header">
+                    <h3>
+                        {{ question.title }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {{ question.body | raw }}
+
+                    <div class="container qna_s">
+                            <div class="section-title p-0">
+                                <h5>Answers</h5>
+                            </div>
+                        <div class="card-body p-0">
+
+                            {% if answers is not empty %}
+                                {% set i = 0 %}
+                                {% for answer in answers %}
+                                    {% set i = i + 1 %}
+                                    <div class="card">
+                                        <div class="card-header">
+                                            {{ i }}
+                                            <div class="float-right">
+                                                <div class="answer_more">
+                                                    Answer By : <a href="#!"> {{ answer.qna_by.info.first_name }}  </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            {{ answer.answer | raw }}
+                                        </div>
+                                        {#<div class="card-footer">#}
+                                            {#<a href="#!" class="card-footer-item card-footer-item-bordered">Save</a>#}
+                                        {#</div>#}
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                    <div class="alert alert-info mx-3"> No any answers yet. </div>
+                            {% endif %}
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Submit Answer</h5>
+                                </div>
+                                <div class="card-body">
+
+                                    <form method="post" name="submitQAns" action="{{ question.qna_id }}/submit">
+                                        {#<div class="form-row">#}
+                                            {#<!-- form column -->#}
+                                            {#<label for="input01" class="col-md-3 mb-3">Title</label> <!-- /form column -->#}
+                                            {#<!-- form column -->#}
+                                            {#<div class="col-md-9 mb-3">#}
+                                                {#<input type="text" name="title" class="form-control" id="input01" required="">#}
+                                            {#</div><!-- /form column -->#}
+                                        {#</div>#}
+                                        <div class="form-row">
+                                            <!-- form column -->
+                                            <label for="answerContent" class="col-md-3 mb-3">Answer</label> <!-- /form column -->
+                                            <!-- form column -->
+                                            <div class="col-md-9 mb-3">
+                                                <textarea name="answer" class="form-control" id="answerContent" cols="30" rows="5"></textarea>
+                                            </div><!-- /form column -->
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="col-md-3"></div>
+                                            <button type="submit" name="answerSubmit" class="btn btn-primary">Submit Answer</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+
+    {#<div class="ms-hero-page ms-hero-img-subject mb-1 ms-hero-bg-primary">#}
+        {#<div class="container">#}
+            {#<div class="card card-fluid">#}
+                {#<h2>#}
+                   {#{{ question.title }}#}
+                {#</h2>#}
+                {#<p>#}{#<span class="book-author">#}
+                        {#by <a class="color-info-light" href="/u/{{ user_.username }}"><strong>{{ user_.firstName }}</strong></a>#}
+                    {#</span>#}
+                    {#<br>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-file mr-1"></i><span class="d-none d-md-inline-block">Type</span>:<strong class="color-warning-light mr-1">{{ note.type }}</strong></span>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-eye mr-1"></i><span class="d-none d-md-inline-block">Views</span>:<strong class="color-warning-light mr-1">{{ not note.views is null ? note.views:'0' }}</strong></span>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-upload mr-1"></i><span class="d-none d-md-inline-block">Uploaded</span>:#}
+                        {#<strong class="color-warning-light mr-1">{{ note.uploadedAt|ago }}</strong></span>#}
+                {#</p>#}
+            {#</div></div></div>#}
+    {#<div class="container">#}
+        {#<div class="row justify-content m-1">#}
+
+            {#<div id="toolbar-container"></div>#}
+            {#<div id="fr-view">#}
+            {#{{ question.body | raw }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+    </div>
+
+{% endblock %}
+
+{% block addJS %}
+    <script src="/assets/vendor/ckeditor5/ckeditor.js"></script>
+    <script src="/assets/vendor/ckfinder/ckfinder.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#answerContent' ), {
+                // plugins: [ CKFinder,  ],
+                toolbar: ["heading","|","bold","italic","link","bulletedList","numberedList",'|', "ckfinder","imageUpload",'|', "blockQuote","insertTable","mediaEmbed","undo","redo"],
+                ckfinder: {
+                    uploadUrl: '/assets/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                },
+            } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( err => {
+                console.error( err.stack );
+            } );
+    </script>
+{% endblock %}

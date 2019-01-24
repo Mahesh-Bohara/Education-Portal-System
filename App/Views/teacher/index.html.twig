@@ -1,0 +1,96 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}Home{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block main %}
+
+
+<!-- .app-main -->
+<main class="app-main">
+  <!-- .wrapper -->
+  <div class="wrapper">
+    <!-- .page -->
+    <div class="page">
+      <!-- .page-inner -->
+      <div class="page-inner">
+        <!-- .page-title-bar -->
+        <header class="page-title-bar">
+          <p class="lead">
+            <span class="font-weight-bold">Hi, {{ user.info.first_name }}.</span> <span class="d-block text-muted">Here’s what’s happening on your education portal.</span>
+          </p>
+        </header><!-- /.page-title-bar -->
+        <!-- .page-section -->
+        <div class="page-section">
+          <!-- .section-block -->
+          <div class="section-block">
+            <!-- metric row -->
+            <div class="metric-row">
+              <div class="col-lg-9">
+                <div class="metric-row metric-flush">
+                  <!-- metric column -->
+                  <div class="col">
+                    <!-- .metric -->
+                    <a href="#students" class="metric metric-bordered align-items-center">
+                      <h2 class="metric-label"> Students </h2>
+                      <p class="metric-value h3">
+                        <sub><i class="oi oi-people"></i></sub> <span class="value">{{ count.student }}</span>
+                      </p>
+                    </a> <!-- /.metric -->
+                  </div><!-- /metric column -->
+                  <!-- metric column -->
+                  <div class="col">
+                    <!-- .metric -->
+                    <a href="/t/notes" class="metric metric-bordered align-items-center">
+                      <h2 class="metric-label"> Notes </h2>
+                      <p class="metric-value h3">
+                        <sub><i class="oi oi-lightbulb"></i></sub> <span class="value">{{ count.notes }}</span>
+                      </p>
+                    </a> <!-- /.metric -->
+                  </div><!-- /metric column -->
+                  <!-- metric column -->
+                  <div class="col">
+                    <!-- .metric -->
+                    <a href="#qna" class="metric metric-bordered align-items-center">
+                      <h2 class="metric-label"> Question & Answer </h2>
+                      <p class="metric-value h3">
+                        <sub><i class="fa fa-tasks"></i></sub> <span class="value">{{ count.qna }}</span>
+                      </p>
+                    </a> <!-- /.metric -->
+                  </div><!-- /metric column -->
+                </div>
+              </div><!-- metric column -->
+              <div class="col-lg-3">
+                <!-- .metric --
+                <a href="user-tasks.html" class="metric metric-bordered">
+                  <div class="metric-badge">
+                    <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> ONGOING TASKS</span>
+                  </div>
+                  <p class="metric-value h3">
+                    <sub><i class="oi oi-timer"></i></sub> <span class="value">8</span>
+                  </p>
+                </a> <!-- /.metric -->
+              </div><!-- /metric column -->
+            </div><!-- /metric row -->
+          </div><!-- /.section-block -->
+
+
+        </div><!-- /.page-section -->
+      </div><!-- /.page-inner -->
+    </div><!-- /.page -->
+  </div><!-- .app-footer -->
+  <footer class="app-footer">
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a class="text-muted" href="#!">Privacy</a>
+      </li>
+      <li class="list-inline-item">
+        <a class="text-muted" href="#!">Terms of Service</a>
+      </li>
+    </ul>
+    <div class="copyright"> Copyright © 2018. All right reserved. </div>
+  </footer><!-- /.app-footer -->
+  <!-- /.wrapper -->
+</main><!-- /.app-main -->
+
+{% endblock %}

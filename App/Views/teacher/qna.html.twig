@@ -1,0 +1,81 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}Question and Answers{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+
+                {% include 'teacher/includes/sys_message.html.twig' %}
+
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <p class="lead">
+                        <span class="font-weight-bold">All Questions
+                            <a role="button" href="/t/qna/add" class="btn btn-primary float-right">Ask Question</a>
+                        </span>
+                    </p>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- .section-block -->
+                    <div class="section-block">
+
+                        <div class="row mt-4">
+                            <div class="col-lg-12">
+                                <div class="list-group list-group-flush list-group-divider">
+
+
+                                    {% if questions is not empty %}
+                                    {% for question in questions %}
+                                        <div class="list-group-item">
+                                            <div class="list-group-item-figure">
+                                                <a href="#/user" class="tile tile-circle bg-teal">{{ question.qna_by.info.first_name [:1] }}{{ question.qna_by.info.last_name [:1] }}</a>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+                                                    <div class="team">
+                                                        <h4 class="list-group-item-title">
+                                                            <a href="/t/qna/{{ question.qna_id }}">{{ question.title }}</a>
+                                                        </h4>
+                                                        <p class="list-group-item-text"> {{ question.body|raw }} </p>
+                                                    </div>
+                                                    <ul class="list-inline text-muted mb-0">
+                                                        <li class="list-inline-item mr-3" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Answers">
+                                                            <i class="fa fa-check text-yellow"></i> 0 </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="list-group-item-figure">
+                                                {% if user.login_id == question.qna_by.login_id %}
+                                                <a href="/t/qna/{{ question.qna_id }}/delete" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-trash"></i></a>
+                                                {% endif %}
+                                                {#<a href="#!remove" class="btn btn-sm btn-icon btn-secondary stop-propagation"><i class="fas fa-edit"></i></a>#}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    {% else %}
+                                        <div class="list-group-item">
+                                            <div class="list-group-item-body">
+                                                No any questions.
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div><!-- /.section-block -->
+
+
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}Assignments{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+
+                {% include 'teacher/includes/sys_message.html.twig' %}
+
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <p class="lead">
+                        <span class="font-weight-bold">Assignments</span>
+                    </p>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- .section-block -->
+                    <div class="section-block">
+
+                            <header class="card-header">
+                                <div class="d-flex align-items-center">
+                                    <span class="mr-auto">Action : </span>
+                                    <a href="/t/assignment/add" class="btn btn-icon btn-light"><i class="fa fa-plus" title="add assignments"></i></a>
+                                    <!--<button type="button" class="btn btn-icon btn-light"><i class="fa fa-download"></i></button> -->
+                                </div>
+                            </header>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover">
+                                <!-- thead -->
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th> # </th>
+                                    <th> Assignment Title </th>
+                                    <th> Assignment </th>
+                                    <th style="min-width:200px"> Action </th>
+                                </tr>
+                                </thead><!-- /thead -->
+                                <!-- tbody -->
+                                <tbody>
+                                {% if assignments is not empty %}
+                                {% set i = 0 %}
+                                {% for assignment in assignments %}
+                                    {% set i = i + 1 %}
+                                <!-- tr -->
+                                <tr>
+                                    <td> {{ i }} </td>
+                                    <td> {{ assignment.assignment_title }} </td>
+                                    <td> {{ assignment.assignment }} </td>
+                                    <td>
+                                        <a href="/t/assignment/{{ assignment.assignment_id }}/edit" class="btn btn-outline-primary"><i class="fa fa-edit"></i><span class="d-sm-none d-lg-inline-block">Edit</span></a>
+                                        <a href="/t/assignment/{{ assignment.assignment_id }}/delete" class="btn btn-outline-primary"><i class="fa fa-trash"></i><span class="d-sm-none d-lg-inline-block">Delete</span></a>
+                                    </td>
+                                </tr><!-- /tr -->
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3"><div class="alert alert-light">No any assignment found</div></td>
+                                        <td>
+                                            <a href="/t/assignment/add" class="btn btn-outline-primary"><i class="fa fa-plus"></i><span class="d-sm-none d-lg-inline-block">&nbsp;Add</span></a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                </tbody><!-- /tbody -->
+                            </table>
+
+                        </div>
+
+
+                    </div><!-- /.section-block -->
+
+
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+
+{% endblock %}

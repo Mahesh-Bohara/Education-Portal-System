@@ -1,0 +1,9 @@
+
+        {# any error or success notification #}
+                {% for type, message in messages %}
+                    {% for message in message %}
+                        <div class="alert alert-{{type}}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}

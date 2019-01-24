@@ -1,0 +1,94 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+    <!-- .page -->
+    <div class="page">
+        <!-- .page-inner -->
+        <div class="page-inner">
+            <!-- .page-title-bar -->
+            <header class="page-title-bar">
+                <p class="lead">
+                    <span class="font-weight-bold">Add Note</span>
+                </p>
+            </header><!-- /.page-title-bar -->
+            <!-- .page-section -->
+            <div class="page-section">
+                <!-- .section-block -->
+                <div class="section-block">
+
+                    <div class="card card-fluid">
+                        <h6 class="card-header"> Form : Add Note </h6>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input01" class="col-md-3 mb-3">Course</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <input type="text" class="form-control" id="input01" name="course" required="">
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input02" class="col-md-3 mb-3">Subject</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <input type="text" class="form-control" id="input02" name="subject" required="">
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input03" class="col-md-3 mb-3">Title</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <input type="text" class="form-control" id="input03" name="title" required="">
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="noteContent" class="col-md-3 mb-3">Note</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <textarea name="content" class="form-control" id="noteContent" cols="30" rows="5"></textarea>
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-3"></div>
+                                    <button type="submit" name="addNoteSubmit" class="btn btn-primary">Add Note</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div><!-- /.section-block -->
+
+
+            </div><!-- /.page-section -->
+        </div><!-- /.page-inner -->
+    </div><!-- /.page -->
+
+{% endblock %}
+
+{% block headJS %}
+    <script src="/assets/vendor/ckeditor5/ckeditor.js"></script>
+    <script src="/assets/vendor/ckfinder/ckfinder.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#noteContent' ), {
+                // plugins: [ CKFinder,  ],
+                toolbar: ["heading","|","bold","italic","link","bulletedList","numberedList",'|', "ckfinder","imageUpload",'|', "blockQuote","insertTable","mediaEmbed","undo","redo"],
+                ckfinder: {
+                    uploadUrl: '/assets/vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                },
+            } )
+            .then( editor => {
+                window.editor = editor;
+            } )
+            .catch( err => {
+                console.error( err.stack );
+            } );
+    </script>
+{% endblock %}

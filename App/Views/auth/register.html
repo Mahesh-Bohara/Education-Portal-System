@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block headCSS %}
+    <link rel="stylesheet" href="/assets/education-portal/auth.css">
+{% endblock %}
+{% block body %}
+    <!-- .auth -->
+    <main class="auth">
+            <header id="auth-header" class="auth-header" style="background-image: url(assets/images/illustration/img-1.png);">
+              <h1>
+                <img src="/assets/education-portal/education-portal-logo-white.png" alt="" height="80"> <span class="sr-only">Sign Up</span>
+              </h1>
+              <p> Already have an account? please <a href="/account/login">Sign In</a>
+              </p>
+            </header>
+            <form class="auth-form">
+                    <h4>Sign Up As</h5>
+              <div class="form-group">
+                    <a href="/account/r/Student" class="btn btn-lg btn-primary btn-block" type="submit">Student</a>
+                </div>
+              <div class="form-group">
+                    <a href="/account/r/Teacher" class="btn btn-lg btn-primary btn-block" type="submit">Teacher</a>
+                </div>
+            </form>
+            <!-- copyright -->
+            <footer class="auth-footer"> © 2018 All Rights Reserved. </footer>
+          </main><!-- /.auth -->
+{% endblock %}
+
+{% block headJS %}
+    <script src="/assets/particles.js/particles.min.js" type="text/javascript"></script>
+    <script type="71fd9b8b7936c7a0d33fb89a-text/javascript">
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            particlesJS.load('auth-header', '/assets/particles.js/particles.json');
+    </script>
+    <!-- BEGIN THEME JS -->
+    <script src="/assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+{% endblock %}

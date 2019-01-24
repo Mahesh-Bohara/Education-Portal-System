@@ -1,0 +1,152 @@
+{% extends  'app/base.html.twig' %}
+
+{% block title %}Chat {{ query }}{% endblock %}
+{% block headCSS %}
+    <link rel="stylesheet" href="/assets/vendor/mCustomScrollbar/jquery.mCustomScrollbar.css" />
+    <!-- Plugin -> Photoswipe  -->
+    <link rel="stylesheet" href="/assets/vendor/photoswipe/photoswipe.css">
+    <link rel="stylesheet" href="/assets/vendor/photoswipe/default-skin/default-skin.css">
+    <style>
+        @media (max-height: 992px){
+            .page {
+                min-height: calc(100vh - 3.5rem);
+            }
+        }
+        /*.list-group-item.list-item-cuser:hover {*/
+            /*background: #f6f7f9;*/
+        /*}*/
+        .list-group-item.list-item-cuser.active {
+            background: #e6e8ed1a;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <!-- .app -->
+    <div class="app">
+        <!--[if lt IE 10]>
+        <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+        <![endif]-->
+        {% if user.role == "Student" %}
+            {% include 'student/includes/header.html.twig' %}
+            {% include 'student/includes/aside.html.twig' %}
+        {% elseif user.role == "Teacher" %}
+            {% include 'teacher/includes/header.html.twig' %}
+            {% include 'teacher/includes/aside.html.twig' %}
+        {% endif %}
+
+        {% block main %}
+            <!-- .app-main -->
+            <main class="app-main">
+
+                <!-- .wrapper -->
+                <div class="wrapper">
+                    <!-- .page -->
+                    <div class="page has-sidebar has-sidebar-expand-lg">
+                        <!-- .page-inner -->
+                        <div class="page-inner page-inner-fill">
+                            {% block chat %}
+                                <button class="btn btn-danger btn-floated d-lg-none" type="button" data-toggle="sidebar"><i class="fa fa-users"></i></button>
+                                <!-- .page-section -->
+                                <div class="page-section">
+                                    <div class="section-block">
+                                        <div class="alert alert-info">
+                                            To start chat, choose any one from user list.
+                                        </div>
+                                    </div>
+                                </div><!-- /.page-section -->
+                            {% endblock %}
+
+                        </div><!-- /.page-inner -->
+                        <!-- .page-sidebar -->
+                        <div class="page-sidebar">
+                            <!-- .sidebar-header -->
+                            <header class="sidebar-header d-sm-none">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active">
+                                            <a href="#!" onclick="Looper.toggleSidebar()"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Back</a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </header><!-- /.sidebar-header -->
+                            <!-- .sidebar-section -->
+                            <div class="sidebar-section sidebar-section-fill">
+                                <h3 class="section-title"> Users </h3>
+                                <div class="list-group list-group-flush list-group-divider">
+                                    {#<div class="list-group-header"> Users </div>#}
+
+                                    {% for cu in users %}
+                                        {% set userId = cu.login_id %}
+                                        <a href="/chat/{{ cu.username }}" class="list-group-item list-group-item-action list-item-cuser {% if chatUser.username == cu.username %}active{% endif %}">
+                                            <div class="list-group-item-figure">
+                                                <div class="{{ cu.role == 'Teacher' ? 'user-avatar' : 'tile tile-circle bg-primary' }}" {{ cu.role == 'Student' ? 'style="position: relative"' }}>
+                                                {% if (cu.role == 'Teacher') %}
+                                                    <img src="/assets/education-portal/default-avatar.svg">
+                                                {% else %}
+                                                    {{ cu.info.first_name[  :1] }}{{ cu.info.last_name|slice(0, 1) }}
+                                                {% endif %}
+                                                    {#<img src="/assets/education-portal/default-avatar.svg" alt="">#}
+                                                    {% if (cu.last_activity != 0) and cu.last_activity | length == 10 %}
+                                                        {% set difference = date('now'|date('U')).diff(date(cu.last_activity)) %}
+                                                        {% if difference.d < 1 and difference.h < 1 and difference.i < 1 %}
+                                                            <span class="avatar-badge online"></span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                <h4 class="list-group-item-title"> {{ cu.info.first_name }} {{ cu.info.last_name }} </h4>
+                                                <p class="list-group-item-text text-truncate">
+                                                    {% for uChat in LChats %}
+                                                        {% if uChat.chat_to == userId  %}
+                                                            You : {{ uChat.chat_content }}
+                                                        {% elseif uChat.chat_from == userId %}
+                                                            {{ uChat.chat_content }}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+
+                                    <a href="#!" class="list-group-item list-group-item-action">
+                                        <div class="list-group-item-figure">
+                                            <div class="user-avatar">
+                                                <img src="/assets/education-portal/default-avatar.svg">
+                                                <span class="avatar-badge online"></span>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item-body">
+                                            <h4 class="list-group-item-title"> Are you free tonight? </h4>
+                                            <p class="list-group-item-text text-truncate">
+                                                <span class="text-dark">Beni Arisandi</span> – Fuga quis quod voluptas mollitia aliquid alias tenetur. Laboriosam asperiores cupiditate aperiam! </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div><!-- /.sidebar-section -->
+                        </div><!-- /.page-sidebar -->
+                    </div><!-- /.page -->
+                </div><!-- /.wrapper -->
+
+
+                <!-- /.wrapper -->
+            </main><!-- /.app-main -->
+        {% endblock %}
+
+    </div><!-- /.app -->
+{% endblock %}
+
+        {% block headJS %}
+            <script src="/assets/javascript/pages/ws.js"></script>
+            <script src="/assets/javascript/pages/chat.js"></script>
+            <script src="/assets/notify/notify.min.js"></script>
+            <script src="/assets/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+            <!-- Plugin -> Photoswipe  -->
+            <script src="/assets/vendor/photoswipe/photoswipe.min.js"></script>
+            <!-- UI JS file -->
+            <script src="/assets/vendor/photoswipe/photoswipe-ui-default.min.js"></script>
+            <!-- BEGIN PAGE LEVEL JS -->
+            <script src="/assets/javascript/pages/photoswipe.js"></script>
+        {% endblock %}
+        {% block addJS %}{% endblock %}

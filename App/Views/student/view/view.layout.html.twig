@@ -1,0 +1,63 @@
+{% extends 'student/base.html.twig' %}
+{% block body %}
+    <!-- .app -->
+    <div class="app has-fullwidth">
+    {% include 'student/includes/header.html.twig' %}
+    {% include 'student/includes/aside.html.twig' %}
+
+    <!-- .app-main -->
+    <main class="app-main" style="padding-left: 0">
+        {% include 'student/includes/sys_message.html.twig' %}
+        <!-- .wrapper -->
+        <div class="wrapper">
+            <!-- .page -->
+            <div class="page">
+                {% block notice %}
+                    <!-- .alerts -->
+                    <div class="page-message alert alert-primary has-icon alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <div class="alert-icon">
+                            <span class="oi oi-info"></span>
+                        </div>
+                        <h4 class="alert-heading"> Under Construction! </h4>
+                        <p class="mb-0"> Currently, {{ title }} page is not available. Please <a href="" class="alert-link">try again</a> later.
+                        </p>
+                    </div>
+                    <!-- /.alerts -->
+                {% endblock %}
+
+                <div class="page-inner">
+                    {% block snote_page_content %}{% endblock %}
+                </div>
+                <!-- /.page-inner -->
+
+            </div>
+            <!-- ./page -->
+        </div>
+        <!-- /.wrapper -->
+
+        <!-- .app-footer -->
+        <footer class="app-footer">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-muted" href="#!">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-muted" href="#!">Terms of Service</a>
+                </li>
+            </ul>
+            <div class="copyright"> Copyright © 2018. All right reserved. </div>
+        </footer>
+        <!-- /.app-footer -->
+
+    </main>
+
+{% endblock %}
+        {% block headJS %}
+            <script>
+                $(document).ready(function() {
+                    $('aside.app-aside').removeClass('app-aside-expand-md');
+                });
+            </script>
+        {% endblock %}
+        {% block addJS %}{% endblock %}

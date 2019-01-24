@@ -1,0 +1,70 @@
+{% extends "teacher/app.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+    <!-- .page -->
+    <div class="page">
+        <!-- .page-inner -->
+        <div class="page-inner">
+            <!-- .page-title-bar -->
+            <header class="page-title-bar">
+                <p class="lead">
+                    <span class="font-weight-bold">Add Assignment</span>
+                </p>
+            </header><!-- /.page-title-bar -->
+            <!-- .page-section -->
+            <div class="page-section">
+                <!-- .section-block -->
+                <div class="section-block">
+
+                    <div class="card card-fluid">
+                        <h6 class="card-header"> Form : Add Assignment </h6>
+                        <div class="card-body">
+                            <form method="post" name="addAssignment">
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input01" class="col-md-3 mb-3">Title</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <input type="text" name="title" class="form-control" id="input01" required="">
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-row">
+                                    <!-- form column -->
+                                    <label for="input02" class="col-md-3 mb-3">Assignment</label> <!-- /form column -->
+                                    <!-- form column -->
+                                    <div class="col-md-9 mb-3">
+                                        <textarea name="assignment" required class="form-control" id="input02" cols="30" rows="5"></textarea>
+                                    </div><!-- /form column -->
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-3"></div>
+                                    <button type="submit" name="assignmentSubmit" class="btn btn-primary">Add Assignment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div><!-- /.section-block -->
+
+
+            </div><!-- /.page-section -->
+        </div><!-- /.page-inner -->
+    </div><!-- /.page -->
+
+{% endblock %}
+
+{% block headJS %}
+{#<script language="JavaScript" type="text/javascript" src="/assets/vendor/wysiwyg/wysiwyg.js"></script> #}
+{#<script language="javascript1.2">#}
+   {#// attach the editor to all textareas of your page.#}
+   {#WYSIWYG.attach('all'); #}
+   {##}
+   {#// attach the editor to the textarea with the identifier 'textarea1'.#}
+   {#WYSIWYG.attach('input02');#}
+{#</script>#}
+
+
+{% endblock %}

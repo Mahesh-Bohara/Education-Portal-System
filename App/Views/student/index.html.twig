@@ -1,0 +1,109 @@
+{% extends "student/app.html.twig" %}
+
+{% block title %}Home{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block main %}
+
+
+<!-- .app-main -->
+<main class="app-main">
+  <!-- .wrapper -->
+  <div class="wrapper">
+    <!-- .page -->
+    <div class="page">
+      <!-- .page-inner -->
+      <div class="page-inner">
+        <!-- .page-title-bar -->
+        <header class="page-title-bar">
+          <p class="lead">
+            <span class="font-weight-bold">Hi, {{ user.info.first_name }}.</span> <span class="d-block text-muted">Find the notes, ask question and directly communicate with your education portal.</span>
+          </p>
+        </header><!-- /.page-title-bar -->
+        <!-- .page-section -->
+        <div class="page-section">
+          <!-- .section-block -->
+          <div class="section-block">
+            <h3 class="section-title"> Latest Notes </h3>
+          </div><!-- /.section-block -->
+
+          <div class="row">
+            {% if notes is not empty %}
+              {% set i = 0 %}
+              {% for note in notes %}
+                {% set i = i + 1 %}
+                <div class="col-12 col-lg-8 col-xl-6">
+                  <section class="card">
+                    <header class="card-header">
+                      {{ note.title }}
+                    </header>
+                    <div class="card-body">
+                      {{ note.content | raw }}
+                      <a class="btn-light" href="/s/note/{{ note.link }}" style="bottom: 40px;right: 20px"><i class="fa fa-book"></i> Read more...</a>
+                    </div>
+                  </section>
+                </div>
+              {% endfor %}
+              <div class="col-12 col-lg-8 col-xl-6">
+                <a class="ml-2 btn btn-outline-secondary" href="/s/notes">More notes</a>
+              </div>
+            {% else %}
+              <section>
+                <p class="text-muted ml-4 mr-4">No any notes for {{ query }}</p>
+              </section>
+            {% endif %}
+          </div>
+          <hr class="my-1">
+
+          <div class="section-block">
+            <h3 class="section-title"> Latest Assignments </h3>
+          </div><!-- /.section-block -->
+
+          <div class="row">
+            {% if assignments is not empty %}
+              {% set i = 0 %}
+              {% for assignment in assignments %}
+                {% set i = i + 1 %}
+                <div class="col-12 col-lg-8 col-xl-6">
+                  <section class="card">
+                    <header class="card-header">
+                      {{ assignment.assignment_title }}
+                      <div class="float-right">
+                        <a href="/s/assignment/{{ assignment.assignment_id }}/submit" class="btn-sm btn-outline-primary"><i class="fa fa-pen-alt"></i><span class="d-sm-none d-lg-inline-block">&nbsp;Submit</span></a>
+                      </div>
+                    </header>
+                    <div class="card-body">
+                      {{ assignment.assignment | raw }}
+                    </div>
+                  </section>
+                </div>
+              {% endfor %}
+              <div class="col-12 col-lg-8 col-xl-6">
+                <a class="ml-2 btn btn-outline-secondary" href="/s/notes">More Assignments</a>
+              </div>
+            {% else %}
+              <section>
+                <p class="text-muted ml-4 mr-4">No any notes for {{ query }}</p>
+              </section>
+            {% endif %}
+          </div>
+
+        </div><!-- /.page-section -->
+      </div><!-- /.page-inner -->
+    </div><!-- /.page -->
+  </div><!-- .app-footer -->
+  <footer class="app-footer">
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a class="text-muted" href="#!">Privacy</a>
+      </li>
+      <li class="list-inline-item">
+        <a class="text-muted" href="#!">Terms of Service</a>
+      </li>
+    </ul>
+    <div class="copyright"> Copyright © 2018. All right reserved. </div>
+  </footer><!-- /.app-footer -->
+  <!-- /.wrapper -->
+</main><!-- /.app-main -->
+
+{% endblock %}

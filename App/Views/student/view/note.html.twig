@@ -1,0 +1,48 @@
+{% extends 'student/view/view.layout.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block topHamburger %}
+    <!-- toggle menu -->
+    <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside" aria-label="Menu" aria-controls="navigation">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+    </button>
+    <!-- /toggle menu -->
+{% endblock %}
+{% block notice %} {% endblock %}
+
+{#{% block materialStyle %}#}
+    {#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.7/css/mdb.min.css" />#}
+    {#<link href="{{ asset('assets/libs/froala-editor/css/froala_style.min.css') }}" rel="stylesheet" type="text/css"/>#}
+{#{% endblock %}#}
+
+{% block snote_page_content %}
+
+    <div class="ms-hero-page ms-hero-img-subject mb-1 ms-hero-bg-primary">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="no-m fw-500 ms-site-title color-white center-block ms-site-title-lg mt-2 animated zoomInDown animation-delay-5 word-warp">
+                   {{ note.title }}
+                </h2><p class="color-white text-center center-block mt-md-4 mw-800 animated fadeInUp animation-delay-9">
+                    {#<span class="book-author">#}
+                        {#by <a class="color-info-light" href="/u/{{ user_.username }}"><strong>{{ user_.firstName }}</strong></a>#}
+                    {#</span>#}
+                    {#<br>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-file mr-1"></i><span class="d-none d-md-inline-block">Type</span>:<strong class="color-warning-light mr-1">{{ note.type }}</strong></span>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-eye mr-1"></i><span class="d-none d-md-inline-block">Views</span>:<strong class="color-warning-light mr-1">{{ not note.views is null ? note.views:'0' }}</strong></span>#}
+                    {#<span class="d-inline-block color-white"><i class="fa fa-upload mr-1"></i><span class="d-none d-md-inline-block">Uploaded</span>:#}
+                        {#<strong class="color-warning-light mr-1">{{ note.uploadedAt|ago }}</strong></span>#}
+                </p>
+            </div></div></div>
+    <div class="container">
+        <div class="row justify-content m-1">
+
+            <div id="toolbar-container"></div>
+            <div id="fr-view">
+            {{ note.content | raw }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

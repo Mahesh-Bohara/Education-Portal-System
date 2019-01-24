@@ -1,0 +1,71 @@
+{% extends "student/app.html.twig" %}
+
+{% block title %}Assignments{% endblock %}
+{% block headCSS %}{% endblock %}
+
+{% block page %}
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+
+                {% include 'student/includes/sys_message.html.twig' %}
+
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <p class="lead">
+                        <span class="font-weight-bold">Assignments</span>
+                    </p>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- .section-block -->
+                    <div class="section-block">
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover">
+                                <!-- thead -->
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th> # </th>
+                                    <th> Assignment Title </th>
+                                    <th style="min-width:200px"> Assignment </th>
+                                    <th> Action </th>
+                                </tr>
+                                </thead><!-- /thead -->
+                                <!-- tbody -->
+                                <tbody>
+                                {% if assignments is not empty %}
+                                {% set i = 0 %}
+                                {% for assignment in assignments %}
+                                    {% set i = i + 1 %}
+                                <!-- tr -->
+                                <tr>
+                                    <td> {{ i }} </td>
+                                    <td> {{ assignment.assignment_title }} </td>
+                                    <td> {{ assignment.assignment }} </td>
+                                    <td>
+                                        <a href="/s/assignment/{{ assignment.assignment_id }}/submit" class="btn btn-outline-primary"><i class="fa fa-pen-alt"></i><span class="d-sm-none d-lg-inline-block">&nbsp;Submit</span></a>
+                                    </td>
+                                </tr><!-- /tr -->
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3"><div class="alert alert-light">No any assignment found</div></td>
+                                    </tr>
+                                {% endif %}
+                                </tbody><!-- /tbody -->
+                            </table>
+
+                        </div>
+
+
+                    </div><!-- /.section-block -->
+
+
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+
+{% endblock %}

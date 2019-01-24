@@ -1,0 +1,40 @@
+{% extends "student/base.html.twig" %}
+
+{% block title %}{% endblock %}
+{% block headCSS %}{% endblock %}
+{% block body %}
+
+<!-- .app -->
+<div class="app">
+    <!--[if lt IE 10]>
+    <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+    <![endif]-->
+    {% include 'student/includes/header.html.twig' %}
+    {% include 'student/includes/aside.html.twig' %}
+
+    {% block main %}
+    <!-- .app-main -->
+    <main class="app-main">
+        <!-- .wrapper -->
+        <div class="wrapper">
+
+            {% block page %} {% endblock %}
+
+        </div><!-- .app-footer -->
+        <footer class="app-footer">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a class="text-muted" href="#!">Privacy</a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="text-muted" href="#!">Terms of Service</a>
+                </li>
+            </ul>
+            <div class="copyright"> Copyright © 2018. All right reserved. </div>
+        </footer><!-- /.app-footer -->
+    <!-- /.wrapper -->
+    </main><!-- /.app-main -->
+    {% endblock %}
+
+</div><!-- /.app -->
+{% endblock %}

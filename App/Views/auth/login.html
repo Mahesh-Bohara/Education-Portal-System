@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block headCSS %}
+    <link rel="stylesheet" href="/assets/education-portal/auth.css">
+{% endblock %}
+{% block body %}
+    <!-- .auth -->
+    <main class="auth">
+            <header id="auth-header" class="auth-header">
+              <h1>
+                <img src="/assets/education-portal/education-portal-logo-white.png" alt="" height="80"> <span class="sr-only">Sign In</span>
+              </h1>
+              <p> New to Education Portal ? <a href="/account/signup">Create One</a>
+              </p>
+            </header><!-- form -->
+            <form class="auth-form" method="POST">
+              
+                {# any error or success notification #}
+                {% for type, message in messages %}
+                  {% for message in message %}
+                    <div class="alert alert-{{type}}">
+                        {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endfor %}
+                <h6>Test : One click Login</h6>
+
+                <!-- .form-group -->
+                <div class="form-group">
+                    <a href="#loginAsStudent" id="loginAsStudent1" class="btn btn-lg btn-primary d-lg-inline">S - 1</a>
+                    <a href="#loginAsTeacher" id="loginAsStudent2" class="btn btn-lg btn-primary d-lg-inline">S - 2</a>
+                    <a href="#loginAsTeacher" id="loginAsTeacher1" class="btn btn-lg btn-primary d-lg-inline">T - 1</a>
+                    <a href="#loginAsTeacher" id="loginAsTeacher2" class="btn btn-lg btn-primary d-lg-inline">T - 2</a>
+                </div><!-- /.form-group -->
+
+              <!-- .form-group -->
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required="" autofocus=""> <label for="inputEmail">Email Address</label>
+                </div>
+              </div><!-- /.form-group -->
+              <!-- .form-group -->
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required=""> <label for="inputPassword">Password</label>
+                </div>
+              </div><!-- /.form-group -->
+              <!-- .form-group -->
+              <div class="form-group">
+                    <label for="selectLoginMethod">Login As</label>
+                    <select class="form-control" name="epLA" id="selectLoginMethod">
+                    <option value="1">Student</option>
+                    <option value="2">Teacher</option>
+                    </select>
+              </div>
+              <!-- /.form-group -->
+              <!-- .form-group -->
+              <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Sign In</button>
+              </div><!-- /.form-group -->
+              <!-- recovery links --
+              <div class="text-center pt-3">
+                <a href="#!/account/precover" class="link">Forgot Password?</a>
+              </div>!-- /recovery links -->
+            </form><!-- /.auth-form -->
+            <!-- copyright -->
+            <footer class="auth-footer"> © 2018 All Rights Reserved. <a href="#!">Privacy</a> and <a href="#!">Terms</a>
+            </footer>
+          </main><!-- /.auth -->
+{% endblock %}
+
+{% block headJS %}
+    <script src="/assets/particles.js/particles.min.js" type="text/javascript"></script>
+    <script type="71fd9b8b7936c7a0d33fb89a-text/javascript">
+            /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+            particlesJS.load('auth-header', '/assets/particles.js/particles.json');
+    </script>
+    <!-- BEGIN THEME JS -->
+    <script src="/assets/javascript/pages/login_as.js"></script>
+    <script src="/assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'teacher/profile/base.html.twig' %}
+
+{% block title %} {{ user.info.first_name }} {{ user.info.last_name }} {% endblock %}
+{% block user_detail %}
+    <div class="text-center">
+        <h1 >No any data found.</h1>
+    </div>
+    <!-- .loading -->
+    <div class="loading border-bottom">
+        <div class="loader loader-sm"></div>
+        <div class="sr-only"> Loading more content </div>
+    </div>
+    <!-- /.loading -->
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends  'app/base.html.twig' %}
+
+{% block title %}Search for {{ query }}{% endblock %}
+{% block headCSS %}{% endblock %}
+{% block body %}
+
+    <!-- .app -->
+    <div class="app">
+        <!--[if lt IE 10]>
+        <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+        <![endif]-->
+        {% if user.role == "Student" %}
+            {% include 'student/includes/header.html.twig' %}
+            {% include 'student/includes/aside.html.twig' %}
+        {% elseif user.role == "Teacher" %}
+            {% include 'teacher/includes/header.html.twig' %}
+            {% include 'teacher/includes/aside.html.twig' %}
+        {% endif %}
+
+        {% block main %}
+            <!-- .app-main -->
+            <main class="app-main">
+                <!-- .wrapper -->
+                <div class="wrapper">
+
+                    {% block page %}
+                    <!-- .wrapper -->
+                    <div class="wrapper">
+                        <!-- .page -->
+                        <div class="page">
+                            <div class="page-inner">
+                                <!-- .page-title-bar -->
+                                <header class="page-title-bar">
+                                    <h1 class="page-title"> {{ title }} :: {{ query }} </h1>
+                                    <p class="text-muted"> Search results for {{ query }} </p>
+                                </header>
+                                <!-- /.page-title-bar -->
+                                <!-- .page-section -->
+                                <div class="page-section">
+                                    <!-- page content -->
+                                    <div class="section-block">
+                                        <h3 class="section-title"> Notes </h3>
+                                    </div>
+                                    <div class="row">
+                                        {% if notes is not empty %}
+                                            {% set i = 0 %}
+                                            {% for note in notes %}
+                                            {% set i = i + 1 %}
+                                        <div class="col-12 col-lg-8 col-xl-6">
+                                            <section class="card">
+                                                <header class="card-header">
+                                                    {{ note.title }}
+                                                </header>
+                                                <div class="card-body">
+                                                    {{ note.content | raw }}
+                                                    <a class="btn-light" href="/{{ user.role == "Teacher" ? 't' : 's'}}/note/{{ note.link }}" style="bottom: 40px;right: 20px"><i class="fa fa-book"></i> Read more...</a>
+                                                </div>
+                                            </section>
+                                        </div>
+                                            {% endfor %}
+                                            {% else %}
+                                                <section>
+                                                    <p class="text-muted ml-4 mr-4">No any notes for {{ query }}</p>
+                                                </section>
+                                        {% endif %}
+                                    </div>
+                                    <hr class="my-1">
+                                    <div class="section-block">
+                                        <h3 class="section-title"> Assignments </h3>
+                                    </div>
+                                    <div class="row">
+                                        {% if assignments is not empty %}
+                                            {% set i = 0 %}
+                                            {% for assignment in assignments %}
+                                                {% set i = i + 1 %}
+                                                <div class="col-12 col-lg-8 col-xl-6">
+                                                    <section class="card">
+                                                        <header class="card-header">
+                                                            {{ assignment.assignment_title }}
+                                                            {% if user.role == "Student" %}
+                                                            <div class="float-right">
+                                                                <a href="/s/assignment/{{ assignment.assignment_id }}/submit" class="btn-sm btn-outline-primary"><i class="fa fa-pen-alt"></i><span class="d-sm-none d-lg-inline-block">&nbsp;Submit</span></a>
+                                                            </div>
+                                                            {%  endif %}
+                                                        </header>
+                                                        <div class="card-body">
+                                                            {{ assignment.assignment | raw }}
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <section>
+                                                <p class="text-muted ml-4 mr-4">No any assignments for {{ query }}</p>
+                                            </section>
+                                        {% endif %}
+                                    </div>
+                                    <hr class="my-1">
+                                </div>
+                                <!-- /.page-section -->
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+
+                </div><!-- .app-footer -->
+                <footer class="app-footer">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a class="text-muted" href="#!">Privacy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-muted" href="#!">Terms of Service</a>
+                        </li>
+                    </ul>
+                    <div class="copyright"> Copyright © 2018. All right reserved. </div>
+                </footer><!-- /.app-footer -->
+                <!-- /.wrapper -->
+            </main><!-- /.app-main -->
+        {% endblock %}
+
+    </div><!-- /.app -->
+{% endblock %}
+
+        {% block headJS %}{% endblock %}
+        {% block addJS %}{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'teacher/base.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+    <!-- .app -->
+    <div class="app">
+
+        {% include 'teacher/includes/header.html.twig' %}
+        {% include 'teacher/includes/aside.html.twig' %}
+
+        <!-- .app-main -->
+        <main class="app-main">
+            <!-- .wrapper -->
+            <div class="wrapper">
+                <!-- .page -->
+                <div class="page">
+                    {% include 'teacher/includes/sys_message.html.twig' %}
+
+                    <!-- .page-cover -->
+                    <header class="page-cover">
+                        <div class="text-center">
+                            <a href="#{{ user.username }}" class="user-avatar user-avatar-xl">
+                                <img src="/assets/education-portal/default-avatar.svg" alt="User Avatar">
+                            </a>
+                            <h2 class="h4 mt-3 mb-0"> {{ user.info.first_name }} {{ user.info.last_name }} </h2>
+                            <p class="text-muted">
+                                {{ user.role }} </p>
+                            <p> Email :- {{ user.email }}</p>
+                        </div>
+
+                    </header>
+                    <!-- /.page-cover -->
+                    <!-- .page-navs -->
+                    <nav class="page-navs">
+                        <!-- .nav-scroller -->
+                        <div class="nav-scroller">
+                            <!-- .nav -->
+                            <div class="nav nav-center nav-tabs">
+                                <a class="nav-link" href="#user-activities">Activities
+                                    <span class="badge">16</span>
+                                </a>
+                                <a class="nav-link" href="#user-tasks">Tasks</a>
+                                <a class="nav-link {% if settings_ == 'settings'%}active{% endif %}" href="#/user-settings">Settings</a>
+                            </div>
+                            <!-- /.nav -->
+                        </div>
+                        <!-- /.nav-scroller -->
+                    </nav>
+                    <!-- /.page-navs -->
+                    <!-- .page-inner -->
+                    <div class="page-inner">
+                        <!-- .page-section -->
+                        <div class="page-section">
+                            {% block user_detail %}{% endblock %}
+                        </div>
+                        <!-- /.page-section -->
+                    </div>
+                    <!-- /.page-inner -->
+
+                </div>
+                <!-- /.page -->
+            </div>
+
+            <!-- .app-footer -->
+            <footer class="app-footer">
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#!">Privacy</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-muted" href="#!">Terms of Service</a>
+                    </li>
+                </ul>
+                <div class="copyright"> Copyright © 2018. All right reserved. </div>
+            </footer>
+            <!-- /.app-footer -->
+            <!-- /.wrapper -->
+        </main>
+        <!-- /.app-main -->
+    </div>
+
+{% endblock %}
