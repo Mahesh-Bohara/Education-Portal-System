@@ -1,5 +1,5 @@
 {
-    "name": "education-portal",
+    "name": "education/portal",
     "description": "Education Portal",
     "autoload": {
         "psr-4": {
